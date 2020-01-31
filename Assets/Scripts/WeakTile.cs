@@ -5,28 +5,31 @@ using UnityEngine;
 public class WeakTile : MonoBehaviour
 {
     public float SecondsToCollapse;
+    public float TimeToRespawn;
     public Animator animator;
     public List<MonoBehaviour> scriptsToDisable;
     public List<Collider2D> collidersToDisable;
     bool IsAbused = false;
     bool IsFalling = false;
-    float seconds;
+    bool Crumbled = false;
+    float crumbleTime;
+    float respawnTime;
     void Update()
     {
         if (IsAbused)
         {
             if (!IsFalling)
             {
-                animator.Play("Crumble", 0, seconds / SecondsToCollapse);
+                animator.Play("Crumble", 0, crumbleTime / SecondsToCollapse);
                 IsFalling = true;
             }
-            if (seconds < SecondsToCollapse)
+            if (crumbleTime < SecondsToCollapse)
             {
-                seconds += Time.deltaTime;
+                crumbleTime += Time.deltaTime;
             }
             else
             {
-                seconds = SecondsToCollapse;
+                crumbleTime = SecondsToCollapse;
             }
         }
         else
@@ -36,33 +39,51 @@ public class WeakTile : MonoBehaviour
                 animator.Play("Rest", 0, 0);
                 IsFalling = false;
             }
-            if (seconds > 0)
+            if (crumbleTime > 0)
             {
-                seconds -= Time.deltaTime;
+                crumbleTime -= Time.deltaTime;
             }
             else
             {
                 animator.speed = 1;
-                seconds = 0;
+                crumbleTime = 0;
+            }
+        }
+        if (Crumbled)
+        {
+            respawnTime += Time.deltaTime;
+            if (respawnTime > TimeToRespawn)
+            {
+                OnRespawn();
+                respawnTime = 0;
             }
         }
     }
 
     private void OnCrumble()
     {
-        foreach (var obj in scriptsToDisable)
-        {
-            obj.enabled = false;
-        }
-        foreach (var obj in collidersToDisable)
-        {
-            obj.enabled = false;
-        }
+        crumbleTime = 0;
+        IsAbused = false;
+        Crumbled = true;
+        SetEnabled(false);
     }
 
     private void OnRespawn()
     {
+        SetEnabled(true);
+        Crumbled = false;
+    }
 
+    private void SetEnabled(bool state)
+    {
+        foreach (var obj in scriptsToDisable)
+        {
+            obj.enabled = state;
+        }
+        foreach (var obj in collidersToDisable)
+        {
+            obj.enabled = state;
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D other)
