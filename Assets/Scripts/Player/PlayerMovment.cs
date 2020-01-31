@@ -6,19 +6,19 @@ using UnityEngine;
 public class PlayerMovment : MonoBehaviour
 {
     [SerializeField] private float jumpForce = 10f;
-    [Range(0, 0.5f)][SerializeField] private float movementSmoothing = 0.5f;
+    [Range(0, 0.5f)] [SerializeField] private float movementSmoothing = 0.5f;
     [SerializeField] private float movementSpeed = 10f;
 
     [SerializeField] private LayerMask GroundLayer;
     private Rigidbody2D rigidbodyPlayer;
     private Collider2D colliderPlayer;
-    
+
     private Vector3 velocity = Vector3.zero;
     private float moveInput;
     private bool IsGrounded = true;
     private bool IsAbleToDoubleJump = false;
     private bool facingRight = true;
-    
+
 
     private void Awake()
     {
@@ -36,21 +36,22 @@ public class PlayerMovment : MonoBehaviour
                 rigidbodyPlayer.velocity = Vector2.up * jumpForce;
                 IsAbleToDoubleJump = true;
             }
-            else if(IsAbleToDoubleJump)
+            else if (IsAbleToDoubleJump)
             {
                 rigidbodyPlayer.velocity = Vector2.up * jumpForce;
                 IsAbleToDoubleJump = false;
             }
-        }    
-        
-        if(rigidbodyPlayer.velocity.y > 0)
+        }
+
+        if (rigidbodyPlayer.velocity.y > 0)
         {
             rigidbodyPlayer.velocity += Vector2.up * Physics2D.gravity.y * 1.5f * Time.deltaTime;
-        } else if(rigidbodyPlayer.velocity.y < 0)
+        }
+        else if (rigidbodyPlayer.velocity.y < 0)
         {
             rigidbodyPlayer.velocity += Vector2.up * Physics2D.gravity.y * 1 * Time.deltaTime;
         }
-        
+
     }
     void FixedUpdate()
     {
@@ -59,11 +60,11 @@ public class PlayerMovment : MonoBehaviour
         Vector3 TargetVelocity = new Vector2(moveInput * movementSpeed, rigidbodyPlayer.velocity.y);
         rigidbodyPlayer.velocity = Vector3.SmoothDamp(rigidbodyPlayer.velocity, TargetVelocity, ref velocity, movementSmoothing);
 
-        if(!facingRight && moveInput > 0)
+        if (!facingRight && moveInput > 0)
         {
             FlipPlayer();
         }
-        else if(facingRight && moveInput < 0)
+        else if (facingRight && moveInput < 0)
         {
             FlipPlayer();
         }
