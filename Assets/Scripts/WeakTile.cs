@@ -6,6 +6,8 @@ public class WeakTile : MonoBehaviour
 {
     public float SecondsToCollapse;
     public Animator animator;
+    public List<MonoBehaviour> scriptsToDisable;
+    public List<Collider2D> collidersToDisable;
     bool IsAbused = false;
     bool IsFalling = false;
     float seconds;
@@ -13,21 +15,27 @@ public class WeakTile : MonoBehaviour
     {
         if (IsAbused)
         {
-            if (!IsFalling) animator.Play("Crumble", 0, seconds / SecondsToCollapse);
+            if (!IsFalling)
+            {
+                animator.Play("Crumble", 0, seconds / SecondsToCollapse);
+                IsFalling = true;
+            }
             if (seconds < SecondsToCollapse)
             {
                 seconds += Time.deltaTime;
             }
             else
             {
-                animator.speed = (float)1 / SecondsToCollapse;
                 seconds = SecondsToCollapse;
-                IsFalling = true;
             }
         }
         else
         {
-            if (IsFalling) animator.Play("Rest");
+            if (IsFalling)
+            {
+                animator.Play("Rest", 0, 0);
+                IsFalling = false;
+            }
             if (seconds > 0)
             {
                 seconds -= Time.deltaTime;
@@ -36,18 +44,35 @@ public class WeakTile : MonoBehaviour
             {
                 animator.speed = 1;
                 seconds = 0;
-                IsFalling = false;
             }
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D other)
+    private void OnCrumble()
+    {
+        foreach (var obj in scriptsToDisable)
+        {
+            obj.enabled = false;
+        }
+        foreach (var obj in collidersToDisable)
+        {
+            obj.enabled = false;
+        }
+    }
+
+    private void OnRespawn()
+    {
+
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
     {
         IsAbused = true;
     }
 
-    private void OnCollisionExit2D(Collision2D other)
+    private void OnTriggerExit2D(Collider2D other)
     {
         IsAbused = false;
     }
+
 }
