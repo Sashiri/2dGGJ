@@ -17,7 +17,7 @@ public class PlayerMovment : MonoBehaviour
     private float moveInput;
     private bool IsGrounded = true;
     private bool IsAbleToDoubleJump = false;
-    private bool facingRight = true;
+    private bool facingLeft = false;
 
     List<IInteractable> interactables;
 
@@ -26,6 +26,7 @@ public class PlayerMovment : MonoBehaviour
     {
         rigidbodyPlayer = GetComponent<Rigidbody2D>();
         colliderPlayer = GetComponent<Collider2D>();
+        FlipPlayer();
 
     }
 
@@ -33,14 +34,16 @@ public class PlayerMovment : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
+           
             if (IsGrounded)
             {
-                rigidbodyPlayer.velocity = Vector2.up * jumpForce;
+                rigidbodyPlayer.velocity = new Vector2(rigidbodyPlayer.velocity.x,0) +  Vector2.up * jumpForce;
                 IsAbleToDoubleJump = true;
+                IsGrounded = false;
             }
             else if (IsAbleToDoubleJump)
             {
-                rigidbodyPlayer.velocity = Vector2.up * jumpForce;
+                rigidbodyPlayer.velocity = new Vector2(rigidbodyPlayer.velocity.x, 0) + Vector2.up * jumpForce;
                 IsAbleToDoubleJump = false;
             }
         }
@@ -56,16 +59,15 @@ public class PlayerMovment : MonoBehaviour
     }
     void FixedUpdate()
     {
-        IsGrounded = Physics2D.OverlapCircle(transform.position, radius: 2f, GroundLayer);
         moveInput = Input.GetAxis("Horizontal");
         Vector3 TargetVelocity = new Vector2(moveInput * movementSpeed, rigidbodyPlayer.velocity.y);
         rigidbodyPlayer.velocity = Vector3.SmoothDamp(rigidbodyPlayer.velocity, TargetVelocity, ref velocity, movementSmoothing);
 
-        if (!facingRight && moveInput > 0)
+        if (!facingLeft && moveInput > 0)
         {
             FlipPlayer();
         }
-        else if (facingRight && moveInput < 0)
+        else if (facingLeft && moveInput < 0)
         {
             FlipPlayer();
         }
@@ -74,9 +76,17 @@ public class PlayerMovment : MonoBehaviour
 
     private void FlipPlayer()
     {
-        facingRight = !facingRight;
+        facingLeft = !facingLeft;
         Vector3 scale = transform.localScale;
         scale.x *= -1;
         transform.localScale = scale;
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(collision.gameObject.layer == LayerMask.NameToLayer("Ground"))
+        {
+            IsGrounded = true;
+        }
     }
 }
