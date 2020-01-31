@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class PlayerMovment : MonoBehaviour
 {
-    [SerializeField] private float jumpForce = 10f;
+    [SerializeField] private float jumpForce = 15f;
     [Range(0, 0.5f)][SerializeField] private float movementSmoothing = 0.5f;
     [SerializeField] private float movementSpeed = 10f;
 
@@ -17,7 +17,8 @@ public class PlayerMovment : MonoBehaviour
     private float moveInput;
     private bool IsGrounded = true;
     private bool IsAbleToDoubleJump = false;
-    private bool facingRight = true;
+    private bool IsFacingRight = true;
+    private bool IsCrounching = false;
     
 
     private void Awake()
@@ -29,16 +30,17 @@ public class PlayerMovment : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space) && !IsCrounching)
         {
             if (IsGrounded)
             {
-                rigidbodyPlayer.velocity = Vector2.up * jumpForce;
+                rigidbodyPlayer.velocity = new Vector2(rigidbodyPlayer.velocity.x,0) + Vector2.up * jumpForce;
                 IsAbleToDoubleJump = true;
+                IsGrounded = false;
             }
             else if(IsAbleToDoubleJump)
             {
-                rigidbodyPlayer.velocity = Vector2.up * jumpForce;
+                rigidbodyPlayer.velocity = new Vector2(rigidbodyPlayer.velocity.x, 0) + Vector2.up * jumpForce;
                 IsAbleToDoubleJump = false;
             }
         }    
@@ -51,28 +53,48 @@ public class PlayerMovment : MonoBehaviour
             rigidbodyPlayer.velocity += Vector2.up * Physics2D.gravity.y * 1 * Time.deltaTime;
         }
         
+        if( Input.GetKeyDown(KeyCode.S) && IsGrounded) 
+        {
+            IsCrounching = true;
+            Debug.Log("Crounch");
+            
+        }
+        else if(Input.GetKeyUp(KeyCode.S) && IsGrounded)
+        {
+            IsCrounching = false;
+            Debug.Log("Stand up");
+        }
+        
+        
     }
     void FixedUpdate()
     {
-        IsGrounded = Physics2D.OverlapCircle(transform.position, radius: 2f, GroundLayer);
         moveInput = Input.GetAxis("Horizontal");
         Vector3 TargetVelocity = new Vector2(moveInput * movementSpeed, rigidbodyPlayer.velocity.y);
         rigidbodyPlayer.velocity = Vector3.SmoothDamp(rigidbodyPlayer.velocity, TargetVelocity, ref velocity, movementSmoothing);
 
-        if(!facingRight && moveInput > 0)
+        if(!IsFacingRight && moveInput > 0)
         {
             FlipPlayer();
         }
-        else if(facingRight && moveInput < 0)
+        else if(IsFacingRight && moveInput < 0)
         {
             FlipPlayer();
         }
 
     }
 
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Ground"));
+        {
+            IsGrounded = true;
+        }
+    }
+
     private void FlipPlayer()
     {
-        facingRight = !facingRight;
+        IsFacingRight = !IsFacingRight;
         Vector3 scale = transform.localScale;
         scale.x *= -1;
         transform.localScale = scale;
