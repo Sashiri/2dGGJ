@@ -19,6 +19,8 @@ public class PlayerMovment : MonoBehaviour
     private bool IsAbleToDoubleJump = false;
     private bool facingRight = true;
 
+    List<IInteractable> interactables;
+
 
     private void Awake()
     {
@@ -51,7 +53,6 @@ public class PlayerMovment : MonoBehaviour
         {
             rigidbodyPlayer.velocity += Vector2.up * Physics2D.gravity.y * 1 * Time.deltaTime;
         }
-
     }
     void FixedUpdate()
     {
