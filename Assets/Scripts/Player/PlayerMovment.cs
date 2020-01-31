@@ -2,33 +2,68 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class PlayerMovment : MonoBehaviour
 {
-    [SerializeField] private float jumpForce = 100f;
-    [Range(0, 0.5f)] private float movementSmoothing = 0.5f;
+    [SerializeField] private float jumpForce = 10f;
+    [Range(0, 0.5f)][SerializeField] private float movementSmoothing = 0.5f;
+    [SerializeField] private float movementSpeed = 10f;
+
+    [SerializeField] private LayerMask GroundLayer;
     private Rigidbody2D rigidbodyPlayer;
     private Collider2D colliderPlayer;
-    private bool facingRight = true;
+    
     private Vector3 velocity = Vector3.zero;
     private float moveInput;
+    private bool IsGrounded = true;
+    private bool IsAbleToDoubleJump = false;
+    private bool facingRight = true;
+    
 
     private void Awake()
     {
         rigidbodyPlayer = GetComponent<Rigidbody2D>();
+        colliderPlayer = GetComponent<Collider2D>();
 
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            if (IsGrounded)
+            {
+                rigidbodyPlayer.velocity = Vector2.up * jumpForce;
+                IsAbleToDoubleJump = true;
+            }
+            else if(IsAbleToDoubleJump)
+            {
+                rigidbodyPlayer.velocity = Vector2.up * jumpForce;
+                IsAbleToDoubleJump = false;
+            }
+        }    
+        
+        if(rigidbodyPlayer.velocity.y > 0)
+        {
+            rigidbodyPlayer.velocity += Vector2.up * Physics2D.gravity.y * 1.5f * Time.deltaTime;
+        } else if(rigidbodyPlayer.velocity.y < 0)
+        {
+            rigidbodyPlayer.velocity += Vector2.up * Physics2D.gravity.y * 1 * Time.deltaTime;
+        }
+        
+    }
+    void FixedUpdate()
+    {
+        IsGrounded = Physics2D.OverlapCircle(transform.position, radius: 2f, GroundLayer);
         moveInput = Input.GetAxis("Horizontal");
-        rigidbodyPlayer.velocity = new Vector2(moveInput * movementSmoothing, rigidbodyPlayer.velocity.y);
+        Vector3 TargetVelocity = new Vector2(moveInput * movementSpeed, rigidbodyPlayer.velocity.y);
+        rigidbodyPlayer.velocity = Vector3.SmoothDamp(rigidbodyPlayer.velocity, TargetVelocity, ref velocity, movementSmoothing);
 
-        if(facingRight == false && moveInput > 0)
+        if(!facingRight && moveInput > 0)
         {
             FlipPlayer();
         }
-        else if(facingRight == true && moveInput < 0)
+        else if(facingRight && moveInput < 0)
         {
             FlipPlayer();
         }
