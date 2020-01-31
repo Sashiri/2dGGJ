@@ -17,7 +17,7 @@ public class PlayerMovment : MonoBehaviour
     private float moveInput;
     private bool IsGrounded = true;
     private bool IsAbleToDoubleJump = false;
-    private bool IsFacingRight = true;
+    private bool IsFacingLeft = false;
     private bool IsCrounching = false;
     
 
@@ -25,7 +25,7 @@ public class PlayerMovment : MonoBehaviour
     {
         rigidbodyPlayer = GetComponent<Rigidbody2D>();
         colliderPlayer = GetComponent<Collider2D>();
-
+        FlipPlayer();
     }
 
     private void Update()
@@ -73,11 +73,11 @@ public class PlayerMovment : MonoBehaviour
         Vector3 TargetVelocity = new Vector2(moveInput * movementSpeed, rigidbodyPlayer.velocity.y);
         rigidbodyPlayer.velocity = Vector3.SmoothDamp(rigidbodyPlayer.velocity, TargetVelocity, ref velocity, movementSmoothing);
 
-        if(!IsFacingRight && moveInput > 0)
+        if(!IsFacingLeft && moveInput > 0)
         {
             FlipPlayer();
         }
-        else if(IsFacingRight && moveInput < 0)
+        else if(IsFacingLeft && moveInput < 0)
         {
             FlipPlayer();
         }
@@ -94,7 +94,7 @@ public class PlayerMovment : MonoBehaviour
 
     private void FlipPlayer()
     {
-        IsFacingRight = !IsFacingRight;
+        IsFacingLeft = !IsFacingLeft;
         Vector3 scale = transform.localScale;
         scale.x *= -1;
         transform.localScale = scale;
