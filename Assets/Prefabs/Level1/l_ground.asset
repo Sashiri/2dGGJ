@@ -31,7 +31,7 @@ MonoBehaviour:
     m_End: 135
     m_Order: 1
     m_Sprites: []
-  m_FillTexture: {fileID: 2800000, guid: 927bfb18d022ae942a0d35480830edcf, type: 3}
+  m_FillTexture: {fileID: 2800000, guid: 0d545d4ac0cff9e46abc983b73493af1, type: 3}
   m_CornerSprites:
   - m_CornerType: 0
     m_Sprites:
