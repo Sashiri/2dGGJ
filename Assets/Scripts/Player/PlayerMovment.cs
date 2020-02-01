@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 
 public class PlayerMovment : MonoBehaviour
@@ -8,7 +9,6 @@ public class PlayerMovment : MonoBehaviour
     [SerializeField] private float jumpForce = 10f;
     [Range(0, 0.5f)] [SerializeField] private float movementSmoothing = 0.5f;
     [SerializeField] private float movementSpeed = 10f;
-
     [SerializeField] private LayerMask GroundLayer;
     private Rigidbody2D rigidbodyPlayer;
     private Collider2D colliderPlayer;
@@ -55,7 +55,7 @@ public class PlayerMovment : MonoBehaviour
         else if (rigidbodyPlayer.velocity.y < 0)
         {
             rigidbodyPlayer.velocity += Vector2.up * Physics2D.gravity.y * 1 * Time.deltaTime;
-        }
+        } 
     }
     void FixedUpdate()
     {
