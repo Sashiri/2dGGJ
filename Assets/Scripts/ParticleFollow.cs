@@ -7,7 +7,7 @@ public class ParticleFollow : MonoBehaviour
     ParticleSystem particleSystem;
     ParticleSystem.Particle[] particles;
     private Vector3 MousePos;
-    private float speed = 250f;
+    private float speed = 300f;
 
     private void LateUpdate()
     {
@@ -17,7 +17,7 @@ public class ParticleFollow : MonoBehaviour
 
         for(int i = 0; i < countAliveParticles; i++)
         {
-            particles[i].position = Vector2.Lerp(particles[i].position, MousePos, particles[i].remainingLifetime / speed);
+            particles[i].position = Vector2.Lerp(particles[i].position, MousePos, (particles[i].startLifetime - particles[i].remainingLifetime) / speed);
             
         }
         particleSystem.SetParticles(particles, countAliveParticles);
