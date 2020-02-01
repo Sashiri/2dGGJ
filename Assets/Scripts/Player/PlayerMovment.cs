@@ -20,9 +20,6 @@ public class PlayerMovment : MonoBehaviour
     private bool IsAbleToDoubleJump = false;
     private bool facingLeft = false;
 
-    List<IInteractable> interactables;
-
-
     private void Awake()
     {
         rigidbodyPlayer = GetComponent<Rigidbody2D>();
@@ -47,6 +44,7 @@ public class PlayerMovment : MonoBehaviour
             {
                 rigidbodyPlayer.velocity = new Vector2(rigidbodyPlayer.velocity.x / 2, 0) + Vector2.up * jumpForce;
                 IsAbleToDoubleJump = false;
+                animatorPlayer.SetTrigger("DoubleJump");
             }
         }
 

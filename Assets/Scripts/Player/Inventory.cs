@@ -8,6 +8,7 @@ public class Inventory : MonoBehaviour
     public static Inventory Instance;
 
     [SerializeField] List<Item> items = new List<Item>();
+    public Observer<int> itemCount = new Observer<int>();
 
     public struct Item
     {
@@ -43,12 +44,16 @@ public class Inventory : MonoBehaviour
     public void AddItem(PickUp item)
     {
         items.Add(new Item(item.objectName, item.objectImage));
+        itemCount.Value = items.Count;
         Debug.Log("Added " + item.objectName);
     }
 
     public void RemoveItem(PickUp item)
     {
         items.Remove(items.Find(x => x.name == item.objectName));
+        itemCount.Value = items.Count;
     }
+
+    
 
 }

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class InteractableObject : MonoBehaviour, IInteractable
+public class InteractableObject : MonoBehaviour
 {
     private SpriteRenderer spriteRenderer;
     public string objectName;
