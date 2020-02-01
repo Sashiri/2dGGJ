@@ -29,17 +29,16 @@ public class PlayerMovment : MonoBehaviour
         colliderPlayer = GetComponent<Collider2D>();
         animatorPlayer = GetComponent<Animator>();
         FlipPlayer();
-
     }
 
     private void Update()
     {
-        
+
         if (Input.GetKeyDown(KeyCode.Space))
         {
             if (IsGrounded)
             {
-                rigidbodyPlayer.velocity = new Vector2(rigidbodyPlayer.velocity.x / 2,0) +  Vector2.up * jumpForce;
+                rigidbodyPlayer.velocity = new Vector2(rigidbodyPlayer.velocity.x / 2, 0) + Vector2.up * jumpForce;
                 IsAbleToDoubleJump = true;
                 IsGrounded = false;
             }
@@ -87,7 +86,7 @@ public class PlayerMovment : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.gameObject.layer == LayerMask.NameToLayer("Ground"))
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Ground"))
         {
             IsGrounded = true;
         }
