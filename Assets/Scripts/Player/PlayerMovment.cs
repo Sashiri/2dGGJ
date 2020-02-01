@@ -55,7 +55,7 @@ public class PlayerMovment : MonoBehaviour
         else if (rigidbodyPlayer.velocity.y < 0)
         {
             rigidbodyPlayer.velocity += Vector2.up * Physics2D.gravity.y * 1 * Time.deltaTime;
-        } 
+        }
     }
     void FixedUpdate()
     {
