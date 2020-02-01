@@ -7,7 +7,6 @@ public class InteractableObject : MonoBehaviour
     private SpriteRenderer spriteRenderer;
     public string objectName;
     public Sprite objectImage;
-    private bool IsInteractable = true;
 
     public virtual void InteractWithObject()
     {
@@ -44,10 +43,9 @@ public class InteractableObject : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (Input.GetKeyDown(KeyCode.F) && collision.gameObject.CompareTag("Player") && IsInteractable)
+        if (Input.GetKeyDown(KeyCode.F) && collision.gameObject.CompareTag("Player"))
         {
             InteractWithObject();
-            IsInteractable = false;
         }
     }
 

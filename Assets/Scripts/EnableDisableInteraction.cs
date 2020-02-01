@@ -20,6 +20,7 @@ public class EnableDisableInteraction : InteractableObject
         else
         {
             sceneSettings.levelHint.SetActive(true);
+            sceneSettings.levelHint.GetComponent<Animator>().SetTrigger("Disapear");
         }
     }
 
