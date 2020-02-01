@@ -318,6 +318,7 @@ GameObject:
   - component: {fileID: 1002696641}
   - component: {fileID: 1002696640}
   - component: {fileID: 1002696642}
+  - component: {fileID: 1002696643}
   m_Layer: 0
   m_Name: Iteractable tmp
   m_TagString: Untagged
@@ -363,7 +364,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -1
   m_Sprite: {fileID: 21300000, guid: edbff82bc79d3e74f95eb451600f40f7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -383,7 +384,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1002696639}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 13.354258, y: -1.63, z: 0}
+  m_LocalPosition: {x: 13.354258, y: -1.49, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -415,6 +416,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 7.28, y: 3.48}
   m_EdgeRadius: 0
+--- !u!114 &1002696643
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1002696639}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8bb8f858dd9e78a4686bfd762c55a84d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1202530219
 GameObject:
   m_ObjectHideFlags: 0
@@ -787,9 +800,19 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 7903934881396460768, guid: 0b250837ca5ebda4897a693f48943ce5,
+        type: 3}
+      propertyPath: GroundLayer.m_Bits
+      value: 256
+      objectReference: {fileID: 0}
     - target: {fileID: 7903934881396460769, guid: 0b250837ca5ebda4897a693f48943ce5,
         type: 3}
       propertyPath: m_Name
+      value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 7903934881396460769, guid: 0b250837ca5ebda4897a693f48943ce5,
+        type: 3}
+      propertyPath: m_TagString
       value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 7903934881396460770, guid: 0b250837ca5ebda4897a693f48943ce5,
@@ -846,6 +869,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7903934881396460771, guid: 0b250837ca5ebda4897a693f48943ce5,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7903934881396460775, guid: 0b250837ca5ebda4897a693f48943ce5,
         type: 3}

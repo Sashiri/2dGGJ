@@ -2,28 +2,39 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Interact : MonoBehaviour, IInteractable
+public class InteractableObject : MonoBehaviour, IInteractable
 {
     private SpriteRenderer spriteRenderer;
 
     public void InteractWithObject()
     {
-
+        
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void Awake()
     {
-        spriteRenderer.enabled = true;
+        spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
     }
 
-    private void OnCollisionExit(Collision collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        spriteRenderer.enabled = false;
+        Debug.Log(collision.gameObject.tag);
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            spriteRenderer.enabled = true;
+        }
     }
 
-    private void OnCollisionStay2D(Collision2D collision)
+    private void OnTriggerExit2D(Collider2D collision)
     {
-        if (Input.GetKey(KeyCode.F))
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            spriteRenderer.enabled = false;
+        }
+    }
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (Input.GetKeyDown(KeyCode.F) && collision.gameObject.CompareTag("Player"))
         {
             InteractWithObject();
         }

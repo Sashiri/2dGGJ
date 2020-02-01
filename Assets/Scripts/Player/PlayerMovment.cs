@@ -12,6 +12,7 @@ public class PlayerMovment : MonoBehaviour
     [SerializeField] private LayerMask GroundLayer;
     private Rigidbody2D rigidbodyPlayer;
     private Collider2D colliderPlayer;
+    private Animator animatorPlayer;
 
     private Vector3 velocity = Vector3.zero;
     private float moveInput;
@@ -26,15 +27,16 @@ public class PlayerMovment : MonoBehaviour
     {
         rigidbodyPlayer = GetComponent<Rigidbody2D>();
         colliderPlayer = GetComponent<Collider2D>();
+        animatorPlayer = GetComponent<Animator>();
         FlipPlayer();
 
     }
 
     private void Update()
     {
+        
         if (Input.GetKeyDown(KeyCode.Space))
         {
-           
             if (IsGrounded)
             {
                 rigidbodyPlayer.velocity = new Vector2(rigidbodyPlayer.velocity.x,0) +  Vector2.up * jumpForce;
@@ -59,8 +61,9 @@ public class PlayerMovment : MonoBehaviour
     }
     void FixedUpdate()
     {
-        moveInput = Input.GetAxis("Horizontal");
-        Vector3 TargetVelocity = new Vector2(moveInput * movementSpeed, rigidbodyPlayer.velocity.y);
+        moveInput = Input.GetAxis("Horizontal") * movementSpeed;
+        animatorPlayer.SetFloat("Speed", Mathf.Abs(moveInput));
+        Vector3 TargetVelocity = new Vector2(moveInput, rigidbodyPlayer.velocity.y);
         rigidbodyPlayer.velocity = Vector3.SmoothDamp(rigidbodyPlayer.velocity, TargetVelocity, ref velocity, movementSmoothing);
 
         if (!facingLeft && moveInput > 0)
