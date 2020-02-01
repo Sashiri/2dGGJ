@@ -5,15 +5,25 @@ using UnityEngine;
 public class InteractableObject : MonoBehaviour, IInteractable
 {
     private SpriteRenderer spriteRenderer;
+    public string objectName;
+    public Sprite objectImage;
+    private bool IsInteractable = true;
 
-    public void InteractWithObject()
+    public virtual void InteractWithObject()
     {
-        
+        Debug.Log("Interaction with object virtual " + transform.name);
+    }
+
+    public virtual void SetItem()
+    {
+        transform.name = objectName;
+        spriteRenderer.sprite = objectImage;
     }
 
     private void Awake()
     {
         spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
+        SetItem();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -34,9 +44,10 @@ public class InteractableObject : MonoBehaviour, IInteractable
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (Input.GetKeyDown(KeyCode.F) && collision.gameObject.CompareTag("Player"))
+        if (Input.GetKeyDown(KeyCode.F) && collision.gameObject.CompareTag("Player") && IsInteractable)
         {
             InteractWithObject();
+            IsInteractable = false;
         }
     }
 

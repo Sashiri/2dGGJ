@@ -42,6 +42,7 @@ public class PlayerMovment : MonoBehaviour
                 rigidbodyPlayer.velocity = new Vector2(rigidbodyPlayer.velocity.x / 2,0) +  Vector2.up * jumpForce;
                 IsAbleToDoubleJump = true;
                 IsGrounded = false;
+                animatorPlayer.SetBool("IsGrounded", IsGrounded);
             }
             else if (IsAbleToDoubleJump)
             {
@@ -90,6 +91,7 @@ public class PlayerMovment : MonoBehaviour
         if(collision.gameObject.layer == LayerMask.NameToLayer("Ground"))
         {
             IsGrounded = true;
+            animatorPlayer.SetBool("IsGrounded", IsGrounded);
         }
     }
 }
