@@ -18,7 +18,6 @@ public class InteractableObject : MonoBehaviour, IInteractable
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log(collision.gameObject.tag);
         if (collision.gameObject.CompareTag("Player"))
         {
             spriteRenderer.enabled = true;
@@ -32,6 +31,7 @@ public class InteractableObject : MonoBehaviour, IInteractable
             spriteRenderer.enabled = false;
         }
     }
+
     private void OnTriggerStay2D(Collider2D collision)
     {
         if (Input.GetKeyDown(KeyCode.F) && collision.gameObject.CompareTag("Player"))
@@ -39,4 +39,6 @@ public class InteractableObject : MonoBehaviour, IInteractable
             InteractWithObject();
         }
     }
+
+
 }

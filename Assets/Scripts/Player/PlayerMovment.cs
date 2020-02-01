@@ -39,13 +39,13 @@ public class PlayerMovment : MonoBehaviour
         {
             if (IsGrounded)
             {
-                rigidbodyPlayer.velocity = new Vector2(rigidbodyPlayer.velocity.x,0) +  Vector2.up * jumpForce;
+                rigidbodyPlayer.velocity = new Vector2(rigidbodyPlayer.velocity.x / 2,0) +  Vector2.up * jumpForce;
                 IsAbleToDoubleJump = true;
                 IsGrounded = false;
             }
             else if (IsAbleToDoubleJump)
             {
-                rigidbodyPlayer.velocity = new Vector2(rigidbodyPlayer.velocity.x, 0) + Vector2.up * jumpForce;
+                rigidbodyPlayer.velocity = new Vector2(rigidbodyPlayer.velocity.x / 2, 0) + Vector2.up * jumpForce;
                 IsAbleToDoubleJump = false;
             }
         }
