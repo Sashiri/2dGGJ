@@ -132,8 +132,9 @@ GameObject:
   - component: {fileID: 20177608}
   - component: {fileID: 20177607}
   - component: {fileID: 20177606}
+  - component: {fileID: 20177609}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: Particle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -218,7 +219,7 @@ ParticleSystem:
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
   looping: 1
-  prewarm: 0
+  prewarm: 1
   playOnAwake: 1
   useUnscaledTime: 0
   autoRandomSeed: 1
@@ -339,7 +340,7 @@ ParticleSystem:
     startSpeed:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.1
+      scalar: 10
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -2461,10 +2462,10 @@ ParticleSystem:
     randomizePerFrame: 0
   ExternalForcesModule:
     serializedVersion: 2
-    enabled: 0
+    enabled: 1
     multiplierCurve:
       serializedVersion: 2
-      minMaxState: 0
+      minMaxState: 3
       scalar: 1
       minScalar: 1
       maxCurve:
@@ -3725,7 +3726,7 @@ ParticleSystem:
         m_NumAlphaKeys: 2
     range: {x: 4, y: 5}
   CollisionModule:
-    enabled: 0
+    enabled: 1
     serializedVersion: 3
     type: 0
     collisionMode: 0
@@ -4875,6 +4876,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &20177609
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 20177605}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d02c930ecb665424da49b9a9929949ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &963794859
 GameObject:
   m_ObjectHideFlags: 0
@@ -5295,6 +5308,7 @@ GameObject:
   - component: {fileID: 1966671951}
   - component: {fileID: 1966671950}
   - component: {fileID: 1966671953}
+  - component: {fileID: 1966671954}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -5398,6 +5412,18 @@ MonoBehaviour:
   m_RequiresDepthTexture: 0
   m_RequiresColorTexture: 0
   m_Version: 2
+--- !u!114 &1966671954
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1966671949}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3cda08f8427af924396d45b1de7da2ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2080877797
 GameObject:
   m_ObjectHideFlags: 0
