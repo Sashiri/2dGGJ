@@ -1142,7 +1142,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1312820892}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -1.14, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1248,6 +1248,28 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1446439529}
   m_CullTransparentMesh: 0
+--- !u!1 &1582409901 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7903934881396460769, guid: 0b250837ca5ebda4897a693f48943ce5,
+    type: 3}
+  m_PrefabInstance: {fileID: 7903934881576006385}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1582409902
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1582409901}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a9208807c2a4cbc43b42970df5bd1eea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ShakeDuration: 0.3
+  ShakeAmplitude: 1.2
+  ShakeFrequency: 2
+  VirtualCamera: {fileID: 1202530220}
 --- !u!95 &1582409904 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 7903934881396460775, guid: 0b250837ca5ebda4897a693f48943ce5,
@@ -1265,6 +1287,7 @@ GameObject:
   - component: {fileID: 1657505708}
   - component: {fileID: 1657505710}
   - component: {fileID: 1657505709}
+  - component: {fileID: 1657505711}
   m_Layer: 0
   m_Name: cm
   m_TagString: Untagged
@@ -1337,6 +1360,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac0b09e7857660247b1477e93731de29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1657505711
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1657505707}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68bb026fafb42b14791938953eaace77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_NoiseProfile: {fileID: 11400000, guid: 68b0627ea3d796448b29ab0938f2c240, type: 2}
+  m_AmplitudeGain: 0
+  m_FrequencyGain: 0
 --- !u!1 &1730227311
 GameObject:
   m_ObjectHideFlags: 0
@@ -1463,6 +1501,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 7903934881396460768, guid: 0b250837ca5ebda4897a693f48943ce5,
+        type: 3}
+      propertyPath: screenShake
+      value: 
+      objectReference: {fileID: 1582409902}
     - target: {fileID: 7903934881396460769, guid: 0b250837ca5ebda4897a693f48943ce5,
         type: 3}
       propertyPath: m_Name
