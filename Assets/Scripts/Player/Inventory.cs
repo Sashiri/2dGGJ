@@ -10,50 +10,27 @@ public class Inventory : MonoBehaviour
     [SerializeField] List<Item> items = new List<Item>();
     public Observer<int> itemCount = new Observer<int>();
 
-    public struct Item
-    {
-        public string name;
-        public Sprite sprite;
-        public Item(string _name, Sprite _sprite)
-        {
-            name = _name;
-            sprite = _sprite;
-        }
-    }
-
     private void Awake()
     {
-        if(Instance == null)
+        if (Instance == null)
         {
             Instance = this;
-        } else
+        }
+        else
         {
             Debug.LogWarning("Another Instance of Inventory!");
         }
     }
 
-    private void Update()
+    public void AddItem(Item item)
     {
-        if ( Input.GetKeyDown(KeyCode.X) && items.Count > 0)
-        {
-            Debug.Log(items[0].name);
-            transform.GetComponent<SpriteRenderer>().sprite = items[0].sprite;
-        }
-    }
-
-    public void AddItem(PickUp item)
-    {
-        items.Add(new Item(item.objectName, item.objectImage));
-        itemCount.Value = items.Count;
-        Debug.Log("Added " + item.objectName);
-    }
-
-    public void RemoveItem(PickUp item)
-    {
-        items.Remove(items.Find(x => x.name == item.objectName));
+        items.Add(item);
         itemCount.Value = items.Count;
     }
 
-    
-
+    public void RemoveItem(Item item)
+    {
+        items.Remove(items.Find(x => x.name == item.name));
+        itemCount.Value = items.Count;
+    }
 }

@@ -2,23 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PickUp : InteractableObject
+public class PickUp : MonoBehaviour, IInteractable
 {
-    public Animator PlayerAnimator;
-    public override void InteractWithObject()
-    {
-        base.InteractWithObject();
-        PickUpItem();
-    }
-
-    private void PickUpItem()
+    public Item item;
+    public void Interact()
     {
         Debug.Log("PickUpItem " + transform.name);
-
-        Inventory.Instance.AddItem(this);
-        PlayerAnimator.Play("PickUp");
-        //Inventory.Instance.AddItem(transform.name);
+        Inventory.Instance.AddItem(item);
         Destroy(gameObject);
     }
-
 }
