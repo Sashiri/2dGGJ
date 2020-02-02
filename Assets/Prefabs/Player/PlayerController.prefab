@@ -289,7 +289,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ShakeDuration: 0.3
   ShakeAmplitude: 0.8
-  ShakeFrequency: 2
+  ShakeFrequency: 0.4
   VirtualCamera: {fileID: 0}
 --- !u!70 &3257816591076657729
 CapsuleCollider2D:
