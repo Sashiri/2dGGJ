@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -5883,16 +5883,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3257816590881528275, guid: d7242578a7488744a8886e2582d60b9b,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.115547255
-      objectReference: {fileID: 0}
-    - target: {fileID: 3257816590881528275, guid: d7242578a7488744a8886e2582d60b9b,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.15010886
-      objectReference: {fileID: 0}
     - target: {fileID: 3257816590881528284, guid: d7242578a7488744a8886e2582d60b9b,
         type: 3}
       propertyPath: m_Sprite
@@ -5904,31 +5894,6 @@ PrefabInstance:
       propertyPath: VirtualCamera
       value: 
       objectReference: {fileID: 404690031}
-    - target: {fileID: 3257816591425599327, guid: d7242578a7488744a8886e2582d60b9b,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1.8526059
-      objectReference: {fileID: 0}
-    - target: {fileID: 3257816591425599327, guid: d7242578a7488744a8886e2582d60b9b,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1.8526059
-      objectReference: {fileID: 0}
-    - target: {fileID: 3257816591425599327, guid: d7242578a7488744a8886e2582d60b9b,
-        type: 3}
-      propertyPath: m_LocalScale.z
-      value: 1.8526059
-      objectReference: {fileID: 0}
-    - target: {fileID: 3257816591425599327, guid: d7242578a7488744a8886e2582d60b9b,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -0.52
-      objectReference: {fileID: 0}
-    - target: {fileID: 3257816591425599327, guid: d7242578a7488744a8886e2582d60b9b,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -0.68
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d7242578a7488744a8886e2582d60b9b, type: 3}
 --- !u!1 &3868837372157299180 stripped
