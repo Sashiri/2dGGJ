@@ -24,7 +24,7 @@ public class PlayerMovment : MonoBehaviour
     {
         rigidbodyPlayer = GetComponent<Rigidbody2D>();
         colliderPlayer = GetComponent<Collider2D>();
-        animatorPlayer = GetComponent<Animator>();
+        animatorPlayer = GetComponent<Animator>();      
         FlipPlayer();
     }
 
