@@ -25,7 +25,6 @@ public class InteractionWithCondition : InteractableObject
     private void FireAllIInteractable()
     {
         var scripts = gameObject.GetComponents<IInteractable>();
-        Debug.Log(scripts.Length);
         foreach (var script in scripts)
         {
             script.Interact();
