@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6436059325944329280}
   m_Layer: 0
-  m_Name: las_platforma_1_weak 1
+  m_Name: las_platforma_3_weak
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -31,6 +31,32 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &6436059324866402371
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7269265064875394076}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0.44}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 5.25, y: 1.28}
+    newSize: {x: 5.25, y: 1.28}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 4.9, y: 0.65}
+  m_EdgeRadius: 0
 --- !u!95 &1345333289941209575
 Animator:
   serializedVersion: 3
@@ -62,40 +88,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bad5f4ff73b0d6a4e8c87b73bc604959, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SecondsToCollapse: 0
-  TimeToRespawn: 0
+  SecondsToCollapse: 0.5
+  TimeToRespawn: 4
   animator: {fileID: 1345333289941209575}
   renderersToDisable:
   - {fileID: 6515690174506181219}
   collidersToDisable:
   - {fileID: 5567139280272497875}
   - {fileID: 6436059324994238271}
---- !u!61 &6436059324866402371
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7269265064875394076}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.44}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 5.25, y: 1.28}
-    newSize: {x: 5.25, y: 1.28}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 4.9, y: 0.65}
-  m_EdgeRadius: 0
 --- !u!1001 &5469347344997885854
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -162,6 +162,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8713974220963174018, guid: fbeb23e7f78ec9349a57ae08b1a479d8,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.63
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fbeb23e7f78ec9349a57ae08b1a479d8, type: 3}
