@@ -18,11 +18,6 @@ public class WeakTile : MonoBehaviour
     {
         if (IsAbused)
         {
-            if (!IsFalling)
-            {
-                animator.Play("Crumble", 0, crumbleTime / SecondsToCollapse);
-                IsFalling = true;
-            }
             if (crumbleTime < SecondsToCollapse)
             {
                 crumbleTime += Time.deltaTime;
@@ -30,6 +25,12 @@ public class WeakTile : MonoBehaviour
             else
             {
                 crumbleTime = SecondsToCollapse;
+            }
+            if (!IsFalling)
+            {
+                animator.Play("Crumble", 0, crumbleTime / SecondsToCollapse);
+                IsFalling = true;
+                animator.speed = 1 / SecondsToCollapse;
             }
         }
         else

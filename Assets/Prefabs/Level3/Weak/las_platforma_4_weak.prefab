@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 935114323530127948}
   m_Layer: 0
-  m_Name: las_platforma_1_weak 2
+  m_Name: las_platforma_4_weak
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -31,26 +31,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &297106312454348916
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3551886900225801859}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bad5f4ff73b0d6a4e8c87b73bc604959, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  SecondsToCollapse: 0
-  TimeToRespawn: 0
-  animator: {fileID: 6133759346456351816}
-  renderersToDisable:
-  - {fileID: 1136923541530073340}
-  collidersToDisable:
-  - {fileID: 1795031842279679564}
-  - {fileID: 3693466909598246244}
 --- !u!61 &1020978442150483659
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -96,6 +76,26 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &297106312454348916
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3551886900225801859}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bad5f4ff73b0d6a4e8c87b73bc604959, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SecondsToCollapse: 0.5
+  TimeToRespawn: 3
+  animator: {fileID: 6133759346456351816}
+  renderersToDisable:
+  - {fileID: 1136923541530073340}
+  collidersToDisable:
+  - {fileID: 1795031842279679564}
+  - {fileID: 3693466909598246244}
 --- !u!1001 &4568882067565705464
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -88,8 +88,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bad5f4ff73b0d6a4e8c87b73bc604959, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SecondsToCollapse: 2
-  TimeToRespawn: 5
+  SecondsToCollapse: 0.5
+  TimeToRespawn: 4
   animator: {fileID: 4657729122717783550}
   renderersToDisable:
   - {fileID: 5197696468005492820}
