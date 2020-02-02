@@ -7,7 +7,7 @@ public class WeakTile : MonoBehaviour
     public float SecondsToCollapse;
     public float TimeToRespawn;
     public Animator animator;
-    public List<MonoBehaviour> scriptsToDisable;
+    public List<Renderer> renderersToDisable;
     public List<Collider2D> collidersToDisable;
     bool IsAbused = false;
     bool IsFalling = false;
@@ -76,7 +76,7 @@ public class WeakTile : MonoBehaviour
 
     private void SetEnabled(bool state)
     {
-        foreach (var obj in scriptsToDisable)
+        foreach (var obj in renderersToDisable)
         {
             obj.enabled = state;
         }
