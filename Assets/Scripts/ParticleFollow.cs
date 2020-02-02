@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ParticleFollow : MonoBehaviour
 {
-    ParticleSystem particleSystem;
+    ParticleSystem System;
     ParticleSystem.Particle[] particles;
     private Vector3 MousePos;
     private float speed = 300f;
@@ -12,7 +12,7 @@ public class ParticleFollow : MonoBehaviour
     private void LateUpdate()
     {
         InitializeIfNeeded();
-        int countAliveParticles = particleSystem.GetParticles(particles);
+        int countAliveParticles = System.GetParticles(particles);
         MousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
         for(int i = 0; i < countAliveParticles; i++)
@@ -20,16 +20,16 @@ public class ParticleFollow : MonoBehaviour
             particles[i].position = Vector2.Lerp(particles[i].position, MousePos, (particles[i].startLifetime - particles[i].remainingLifetime) / speed);
             
         }
-        particleSystem.SetParticles(particles, countAliveParticles);
+        System.SetParticles(particles, countAliveParticles);
     }
 
     void InitializeIfNeeded()
     {
-        if (particleSystem == null)
-            particleSystem = GetComponent<ParticleSystem>();
+        if (System == null)
+            System = GetComponent<ParticleSystem>();
 
-        if (particles == null || particles.Length < particleSystem.main.maxParticles)
-            particles = new ParticleSystem.Particle[particleSystem.main.maxParticles];
+        if (particles == null || particles.Length < System.main.maxParticles)
+            particles = new ParticleSystem.Particle[System.main.maxParticles];
         
     }
 }
