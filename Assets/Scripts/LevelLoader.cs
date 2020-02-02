@@ -15,7 +15,7 @@ public class LevelLoader : MonoBehaviour
     // Update is called once per frame
     IEnumerator LoadLevel(string SceneName)
     {
-        transitor.speed = 3.3f / timeTotransition;
+        transitor.speed = 3.4f / timeTotransition;
         transitor.SetTrigger("StartTransition");
         yield return new WaitForSeconds(timeTotransition);
         SceneManager.LoadScene(SceneName);
